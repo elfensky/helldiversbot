@@ -3,3 +3,4 @@
 -   initialize project with `npx create-next-app@latest`
 -   add vitest for testing
 -   add prisma for database
+-   add posthog for analytics

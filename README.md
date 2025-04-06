@@ -10,6 +10,7 @@ It uses:
 -   [ESLint](https://eslint.org) for linting.
 -   [Vitest](https://vitest.dev) for testing
 -   [Prisma](https://prisma.io)
+-   [PostHog](https://posthog.com) for analytics
 <!-- -   [Docker](https://www.docker.com) for deployment -->
 
 ## Getting Started
