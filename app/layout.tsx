@@ -26,7 +26,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
+                <header>header here</header>
                 <PostHogProvider>{children}</PostHogProvider>
+                <footer>footer here</footer>
             </body>
         </html>
     );
