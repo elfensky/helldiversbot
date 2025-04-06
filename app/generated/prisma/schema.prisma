@@ -13,18 +13,114 @@ datasource db {
 //   url      = env("MYSQL_URL")
 // }
 
+// #region Authentication & Authorization
+// NextAuth (Auth.js) 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+  id            String          @id @default(uuid(7))
+  name          String?
+  username      String?         @unique // take their discord username instead?
+  email         String?         @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  Authenticator Authenticator[] // Optional for WebAuthn support
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  //custom relations 
+  settings Settings?
+  posts    Post[]
 }
 
+model Account {
+  id                       String  @id @default(uuid(7))
+  userId                   String  @unique
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(uuid(7))
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+// #endregion
+
+// #region Configuration
+model Config {
+  id                String  @id @default(uuid(7))
+  version           String
+  is_db_initialized Boolean @default(false)
+  settings          Json
+}
+
+model Settings {
+  // id String @id @default(uuid(7))
+  userId   String @id @unique
+  settings Json
+  //relations
+  user     User   @relation(fields: [userId], references: [id])
+}
+
+// #endregion
+
+// #region 
 model Post {
-  id        Int     @id @default(autoincrement())
+  id        String  @id @default(uuid(7))
   title     String
   content   String?
   published Boolean @default(false)
-  authorId  Int
+  authorId  String
   author    User    @relation(fields: [authorId], references: [id])
 }
+
+// #endregion
