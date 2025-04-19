@@ -4,14 +4,14 @@ This is an application that consumes the official Helldivers 1 API, caches and r
 
 It uses:
 
--   [Next.js](https://nextjs.org), bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-    -   App Router for the frontend
-    -   API Routes for the backend
--   [ESLint](https://eslint.org) for linting.
--   [Vitest](https://vitest.dev) for testing
--   [Prisma](https://prisma.io)
--   [PostHog](https://posthog.com) for analytics
-<!-- -   [Docker](https://www.docker.com) for deployment -->
+- [Next.js](https://nextjs.org), bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+    - App Router for the frontend
+    - API Routes for the backend
+- [ESLint](https://eslint.org) for linting.
+- [Vitest](https://vitest.dev) for testing
+- [Prisma](https://prisma.io)
+- [Sentry](https://sentry.io) for analytics
+      <!-- -   [Docker](https://www.docker.com) for deployment -->
 
 ## Getting Started
 
@@ -35,8 +35,8 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 To learn more about Next.js, take a look at the following resources:
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
