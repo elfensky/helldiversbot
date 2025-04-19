@@ -1,5 +1,4 @@
 //analytics
-import { PostHogProvider } from '../components/PostHogProvider';
 
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
@@ -27,7 +26,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
                 <header>header here</header>
-                <PostHogProvider>{children}</PostHogProvider>
+                {children}
                 <footer>footer here</footer>
             </body>
         </html>
